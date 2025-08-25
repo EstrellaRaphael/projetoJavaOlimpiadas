@@ -42,4 +42,12 @@ public class Categoria {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
 }

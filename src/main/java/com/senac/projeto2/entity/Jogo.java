@@ -1,5 +1,6 @@
 package com.senac.projeto2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Jogo {
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
+    @JsonIgnore
     private Categoria categoria;
 
     public int getId() {
@@ -40,5 +42,13 @@ public class Jogo {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
