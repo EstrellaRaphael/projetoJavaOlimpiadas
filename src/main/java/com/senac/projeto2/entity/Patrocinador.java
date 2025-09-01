@@ -7,11 +7,13 @@ import jakarta.persistence.*;
 public class Patrocinador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "patrocinador_id", nullable = false, length = 11)
+    @Column(name = "patrocinador_id")
     private int id;
-    @Column(name = "patrocinador_representante_nome", nullable = false, length = 100)
+    @Column(name = "patrocinador_nome")
     private String nome;
-    @Column(name = "patrocinador_status", nullable = false)
+    @Column(name = "patrocinador_representante_nome")
+    private String representanteNome;
+    @Column(name = "patrocinador_status")
     private int status;
 
     public int getId() {
@@ -28,6 +30,14 @@ public class Patrocinador {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getRepresentanteNome() {
+        return representanteNome;
+    }
+
+    public void setRepresentanteNome(String representanteNome) {
+        this.representanteNome = representanteNome;
     }
 
     public int getStatus() {

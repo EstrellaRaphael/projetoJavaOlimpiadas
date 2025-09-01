@@ -5,7 +5,10 @@ import com.senac.projeto2.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -13,7 +16,6 @@ import java.util.List;
 @RequestMapping("api/categoria")
 @Tag(name = "Categoria", description = "API para gerenciamento das categorias do sistema")
 public class CategoriaController {
-
     private final CategoriaService categoriaService;
 
     public CategoriaController(CategoriaService categoriaService) {
@@ -29,35 +31,12 @@ public class CategoriaController {
     @GetMapping("/listarPorIdCategoria/{idCategoria}")
     @Operation(summary = "Listar categorias do sistema pelo id da categoria")
     public ResponseEntity<Categoria> listarPorIdCategoria(@PathVariable("idCategoria") Integer idCategoria) {
-        return ResponseEntity.ok(categoriaService.listarCategoriasPorId(idCategoria));
+        Categoria categoria = categoriaService.listarCategoriaPorId(idCategoria);
+        if (categoria == null) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(categoria);
+        }
     }
 
-    @PostMapping("/criar")
-    public String criar() {
-        return "Categoria criada com sucesso";
-    }
-
-    @PutMapping("/atualizar")
-    @Operation(summary = "Atualizar categorias do sistema")
-    public String atualizar() {
-        return "Categoria atualzada com sucesso";
-    }
-
-    @PutMapping("/atualizarPorIdCategoria/{idCategoria}")
-    @Operation(summary = "Atualizar categorias do sistema pelo id da categoria")
-    public String atualizarPorIdCategoria(@PathVariable("idCategoria") Integer idCategoria) {
-        return "Categoria por id " + idCategoria + "atualzado com sucesso";
-    }
-
-    @DeleteMapping("/apagar")
-    @Operation(summary = "Apagar categorias do sistema")
-    public String apagar() {
-        return "Categoria apagado com sucesso";
-    }
-
-    @DeleteMapping("/apagarPorIdCategoria/{idCategoria}")
-    @Operation(summary = "Apagar categorias do sistema pelo id da categoria")
-    public String apagarPorIdCategoria(@PathVariable("idCategoria") Integer idCategoria) {
-        return "Categoria por id " + idCategoria + " apagado com sucesso";
-    }
 }

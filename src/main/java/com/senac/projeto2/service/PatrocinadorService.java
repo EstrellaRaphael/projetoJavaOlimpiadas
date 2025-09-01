@@ -8,14 +8,14 @@ import java.util.List;
 
 @Service
 public class PatrocinadorService {
+
     private final PatrocinadorRepository patrocinadorRepository;
 
     public PatrocinadorService(PatrocinadorRepository patrocinadorRepository) {
         this.patrocinadorRepository = patrocinadorRepository;
-
     }
 
-    public List<Patrocinador> listarPatrocinador() {
+    public List<Patrocinador> listarPatrocinadores() {
         return this.patrocinadorRepository.findAll();
     }
 

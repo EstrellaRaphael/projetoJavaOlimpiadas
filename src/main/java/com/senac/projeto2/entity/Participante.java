@@ -3,26 +3,30 @@ package com.senac.projeto2.entity;
 import jakarta.persistence.*;
 
 import java.io.File;
+import java.util.List;
 
 @Entity
 @Table(name = "participante")
 public class Participante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "participante_id", nullable = false, length = 11)
+    @Column(name = "participante_id")
     private int id;
-    @Column(name = "participante_nome", nullable = false, length = 300)
+    @Column(name = "participante_nome")
     private String nome;
-    @Column(name = "participante_email", nullable = false, length = 45)
+    @Column(name = "participante_email")
     private String email;
-    @Column(name = "participante_identificacao", nullable = false, length = 45)
+    @Column(name = "participante_identificacao")
     private String identificacao;
-    @Column(name = "participante_endereco", nullable = false, length = 300)
+    @Column(name = "participante_endereco")
     private String endereco;
-    @Column(name = "participante_foto_de_perfil")
-    private File fotoPerfil;
-    @Column(name = "participante_status", nullable = false)
+    @Column(name = "participante_foto_perfil")
+    private File foto_participante;
+    @Column(name = "participante_status")
     private int status;
+
+    @OneToMany(mappedBy = "participante")
+    private List<Inscricao> inscricoes;
 
     public int getId() {
         return id;
@@ -64,12 +68,12 @@ public class Participante {
         this.endereco = endereco;
     }
 
-    public File getFotoPerfil() {
-        return fotoPerfil;
+    public File getFoto_participante() {
+        return foto_participante;
     }
 
-    public void setFotoPerfil(File fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setFoto_participante(File foto_participante) {
+        this.foto_participante = foto_participante;
     }
 
     public int getStatus() {
@@ -79,6 +83,12 @@ public class Participante {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public List<Inscricao> getInscricoes() {
+        return inscricoes;
+    }
+
+    public void setInscricoes(List<Inscricao> inscricoes) {
+        this.inscricoes = inscricoes;
+    }
 }
-
-

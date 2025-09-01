@@ -7,15 +7,15 @@ import jakarta.persistence.*;
 public class Premio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "premio_id", nullable = false, length = 11)
+    @Column(name = "premio_id")
     private int id;
-    @Column(name = "premio_descricao", nullable = false, length = 300)
-    private String decricao;
-    @Column(name = "premio_ordem_premiacao", nullable = false, length = 11)
-    private int ordemPremiacao;
-    @Column(name = "premio_categoria", nullable = false, length = 11)
+    @Column(name = "premio_descricao")
+    private String descricao;
+    @Column(name = "premio_ordem_premiacao")
+    private int ordem_premiacao;
+    @Column(name = "premio_categoria")
     private int categoria;
-    @Column(name = "premio_status", nullable = false, length = 11)
+    @Column(name = "premio_status")
     private int status;
 
     public int getId() {
@@ -26,20 +26,20 @@ public class Premio {
         this.id = id;
     }
 
-    public String getDecricao() {
-        return decricao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDecricao(String decricao) {
-        this.decricao = decricao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public int getOrdemPremiacao() {
-        return ordemPremiacao;
+    public int getOrdem_premiacao() {
+        return ordem_premiacao;
     }
 
-    public void setOrdemPremiacao(int ordemPremiacao) {
-        this.ordemPremiacao = ordemPremiacao;
+    public void setOrdem_premiacao(int ordem_premiacao) {
+        this.ordem_premiacao = ordem_premiacao;
     }
 
     public int getCategoria() {

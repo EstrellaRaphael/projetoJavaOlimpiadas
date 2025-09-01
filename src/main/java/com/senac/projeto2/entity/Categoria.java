@@ -11,9 +11,9 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categoria_id")
     private int id;
-    @Column(name = "categoria_nome", nullable = false, length = 30)
+    @Column(name = "categoria_nome")
     private String nome;
-    @Column(name = "categoria_status", nullable = false)
+    @Column(name = "categoria_status")
     private int status;
 
     @OneToMany(mappedBy = "categoria")

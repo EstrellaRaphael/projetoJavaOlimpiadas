@@ -8,18 +8,18 @@ import java.util.List;
 
 @Service
 public class PremioService {
+
     private final PremioRepository premioRepository;
 
     public PremioService(PremioRepository premioRepository) {
         this.premioRepository = premioRepository;
-
     }
 
     public List<Premio> listarPremios() {
         return this.premioRepository.findAll();
     }
 
-    public Premio listarPremiosPorId(int idPremio) {
-        return this.premioRepository.findById(idPremio).orElse(null);
+    public Premio listarPremioPorId(int idUsuario) {
+        return this.premioRepository.findById(idUsuario).orElse(null);
     }
 }

@@ -5,15 +5,17 @@ import com.senac.projeto2.service.PremioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/premio")
-@Tag(name = "Premio", description = "API para gerenciamento dos prêmios do sistema")
+@Tag(name = "Premio", description = "API para gerenciamento dos premios do sistema")
 public class PremioController {
-
     private final PremioService premioService;
 
     public PremioController(PremioService premioService) {
@@ -21,43 +23,20 @@ public class PremioController {
     }
 
     @GetMapping("/listar")
-    @Operation(summary = "Listar premios do sistema")
+    @Operation(summary = "Listar usuarios do sistema")
     public ResponseEntity<List<Premio>> listar() {
         return ResponseEntity.ok(premioService.listarPremios());
     }
 
-    @GetMapping("/listarPorIdPremio/{idPremio}")
-    @Operation(summary = "Listar remios do sistema pelo id do premio")
-    public ResponseEntity<Premio> listarPorIdPremio(@PathVariable("idPremio") Integer idPremio) {
-        return ResponseEntity.ok(premioService.listarPremiosPorId(idPremio));
+    @GetMapping("/listarPorIdpremio/{idPremio}")
+    @Operation(summary = "Listar premios do sistema pelo id do premio")
+    public ResponseEntity<Premio> listarPorIdpremio(@PathVariable("idPremio") Integer idPremio) {
+        Premio premio = premioService.listarPremioPorId(idPremio);
+        if (premio == null) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(premio);
+        }
     }
 
-    @PostMapping("/criar")
-    public String criar() {
-        return "Premio criado com sucesso";
-    }
-
-    @PutMapping("/atualizar")
-    @Operation(summary = "Atualizar premios do sistema")
-    public String atualizar() {
-        return "Premio atualzado com sucesso";
-    }
-
-    @PutMapping("/atualizarPorIdPremio/{idPremio}")
-    @Operation(summary = "Atualizar premios do sistema pelo id do premio")
-    public String atualizarPorIdPremio(@PathVariable("idPremio") Integer idPremio) {
-        return "Premio por id " + idPremio + "atualzado com sucesso";
-    }
-
-    @DeleteMapping("/apagar")
-    @Operation(summary = "Apagar premios do sistema")
-    public String apagar() {
-        return "Premio apagado com sucesso";
-    }
-
-    @DeleteMapping("/apagarPorIdPremio/{idPremio}")
-    @Operation(summary = "Apagar premios do sistema pelo id do premio")
-    public String apagarPorIdPremio(@PathVariable("idPremio") Integer idPremio) {
-        return "Premio por id " + idPremio + " apagado com sucesso";
-    }
 }
